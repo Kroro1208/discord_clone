@@ -1,7 +1,7 @@
 import React from 'react'
 import './Sidebar.scss';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import AddIcon from '@mui/icons-material/Add';
 
 
 function Sidebar() {
@@ -22,9 +22,15 @@ function Sidebar() {
                     <h3>Discord</h3>
                     <ExpandMoreIcon />
                 </div>
-                <div>
-                    {/* sideBarChannels */}
-                    
+                {/* sideBarChannels */}
+                <div className='sidebarChannels'>
+                    <div className='sidebarChannelsHeader'>
+                        <div className="sidebarHeader">
+                            <ExpandMoreIcon />
+                            <h4>エンジニアチャンネル</h4>
+                        </div>
+                        <AddIcon className='sidebarAddIcon'/>
+                    </div>
                 </div>
             </div>
         </div>
