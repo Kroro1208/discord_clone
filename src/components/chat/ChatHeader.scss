@@ -4,4 +4,42 @@
   justify-content: space-between;
   width: 100%;
   padding-top: 10px;
+
+  .chatHeaderLeft {
+    padding-left: 15px;
+
+    .chatHeaderHash {
+      color: #7b7c85;
+      padding-right: 7px;
+    }
+
+    h3 {
+      color: white;
+    }
+  }
+
+  .chatHeaderRight {
+    padding-right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color:antiquewhite;
+
+    .chatHeaderSearch {
+        display: flex;
+        align-items: center;
+        background-color: #2a2a2bd1;
+        padding: 3px;
+
+        input {
+            background: transparent;
+            outline: none;
+            border: none;
+        }
+    }
+
+    .MuiSvgIcon-root {
+        cursor: pointer;
+    }
+  }
 }
