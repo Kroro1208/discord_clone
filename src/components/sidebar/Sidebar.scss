@@ -2,23 +2,23 @@
   display: flex;
   flex: 0.35; // 画面全体の35％幅に設定
   height: 100vh;
-  background-color: gray;
+  background-color: white;
 
   .sidebarLeft {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 15px;
-    background-color: black;
+    background-color: #23262d;
     padding: 7px 15px;
     gap: 10px;
 
     .serverIcon {
       width: 60px;
       height: 60px;
-      background-color: gray;
+      background-color: #33363d;
       border-radius: 9999px;
       position: relative;
+      margin-top: 10px;
       img {
         width: 50px;
         position: absolute;
@@ -26,6 +26,17 @@
         left: 50%;
         transform: translate(-50%, -50%);
       }
+    }
+  }
+
+  .sidebarRight {
+    background-color: #2b2d33;
+    width: 300px;
+    .sidebarTop {
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
     }
   }
 }
