@@ -1,4 +1,5 @@
 import './App.scss';
+import Chat from './components/chat/Chat';
 import Sidebar from './components/sidebar/Sidebar';
 
 function App() {
@@ -6,7 +7,8 @@ function App() {
     <div className="App">
       {/* sidebar */}
       <Sidebar />
-      {/* home */}
+      {/* Chat */}
+      <Chat />
     </div>
   );
 }

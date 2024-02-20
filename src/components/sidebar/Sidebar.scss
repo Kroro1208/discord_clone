@@ -1,6 +1,6 @@
 .sidebar {
   display: flex;
-  flex: 0.35; // 画面全体の35％幅に設定
+  flex: 0.3; // 画面全体の35％幅に設定
   height: 100vh;
   background-color: white;
 
@@ -33,6 +33,7 @@
     background-color: #2b2d33;
     width: 300px;
     position: relative;
+    flex-grow: 1;
 
     .sidebarTop {
       color: white;
