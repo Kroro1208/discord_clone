@@ -3,6 +3,9 @@ import './Sidebar.scss';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
 import SidebarChannel from './SidebarChannel';
+import SettingsVoiceIcon from '@mui/icons-material/SettingsVoice';
+import HeadphonesIcon from '@mui/icons-material/Headphones';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 
 function Sidebar() {
@@ -30,14 +33,28 @@ function Sidebar() {
                             <ExpandMoreIcon />
                             <h4>エンジニアチャンネル</h4>
                         </div>
-                        <AddIcon className='sidebarAddIcon'/>
+                        <AddIcon className='sidebarAddIcon' />
                     </div>
                     <div className="sidebarChannelList">
-                        <SidebarChannel/>
-                        <SidebarChannel/>
-                        <SidebarChannel/>
-                        <SidebarChannel/>
-                        <SidebarChannel/>
+                        <SidebarChannel />
+                        <SidebarChannel />
+                        <SidebarChannel />
+                        <SidebarChannel />
+                        <SidebarChannel />
+                    </div>
+                    <div className='sidebarFooter'>
+                        <div className='sidebarAccount'>
+                            <img src="logo192.png" alt="" />
+                            <div className='accountName'>
+                                <h4>Naoya</h4>
+                                <span>#257896</span>
+                            </div>
+                        </div>
+                        <div className='sidebarVoice'>
+                            <SettingsVoiceIcon />
+                            <HeadphonesIcon />
+                            <SettingsIcon />
+                        </div>
                     </div>
                 </div>
             </div>
