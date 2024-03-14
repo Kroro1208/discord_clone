@@ -3,11 +3,11 @@ import './App.scss';
 import Chat from './components/chat/Chat';
 import Sidebar from './components/sidebar/Sidebar';
 import Login from './components/login/login';
+import { useAppSelector } from './app/hooks';
 
 function App() {
 
-  // const user = useSelector((state) => state.user.user);
-  const user = null;
+  const user = useAppSelector((state) => state.user);
 
   return (
     <div className="App">
@@ -20,7 +20,7 @@ function App() {
         </>
       ) : (
         <>
-          <Login/>
+          <Login />
         </>
       )}
     </div>
