@@ -13,7 +13,7 @@ import { DocumentData, addDoc, collection } from 'firebase/firestore';
 
 
 function Sidebar() {
-    const user = useAppSelector((state) => state.user);
+    const user = useAppSelector((state) => state.user.user);
     const { documents: channels } = useCollection("channels"); // "channels"はFirebaseのコレクション名
     const addChannel = async () => {
         let channelName: string | null = prompt("新規チャンネルを作成します");

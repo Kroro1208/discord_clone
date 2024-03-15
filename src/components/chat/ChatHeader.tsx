@@ -7,13 +7,17 @@ import SearchIcon from '@mui/icons-material/Search';
 import SendIcon from '@mui/icons-material/Send';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 
-function ChatHeader() {
+type Props = {
+    channelName: string | null;
+};
+
+function ChatHeader(props: Props) {
     return (
         <div className='chatHeader'>
             <div className='chatHeaderLeft'>
                 <h3>
                     <span className='chatHeaderHash'>#</span>
-                    筋トレ
+                    {props.channelName}
                 </h3>
             </div>
             <div className='chatHeaderRight'>
@@ -24,8 +28,8 @@ function ChatHeader() {
                     <input type="text" placeholder='検索' />
                     <SearchIcon />
                 </div>
-                    <SendIcon />
-                    <LiveHelpIcon/>
+                <SendIcon />
+                <LiveHelpIcon />
             </div>
         </div>
     )

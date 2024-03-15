@@ -6,12 +6,15 @@ import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import GifIcon from '@mui/icons-material/Gif';
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
 import ChatMessage from './ChatMessage';
+import { useAppSelector } from '../../app/hooks';
 
 function Chat() {
+    const channelName = useAppSelector((state) => state.channel.channelName);
+    console.log(channelName);
     return (
         <div className='chat'>
             {/* chatHeader */}
-            <ChatHeader />
+            <ChatHeader channelName={channelName}/>
             {/* chatMessage */}
             <div className='chatMessage'>
                 <ChatMessage />
