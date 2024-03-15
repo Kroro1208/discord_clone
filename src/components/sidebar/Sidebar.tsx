@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Sidebar.scss';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
@@ -6,13 +6,22 @@ import SidebarChannel from './SidebarChannel';
 import SettingsVoiceIcon from '@mui/icons-material/SettingsVoice';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { auth } from '../../firebase';
+import { auth, db } from '../../firebase';
 import { useAppSelector } from '../../app/hooks';
+import { collection, query, onSnapshot } from 'firebase/firestore';
 
 
 function Sidebar() {
     const user = useAppSelector((state) => state.user);
 
+    // ここでエラーが出たのでErrorBoundaryでエラーを確認
+    const q = query(collection(db, "channels"));
+    useEffect(() => {
+        onSnapshot(q, (querySnapShot) => {
+            const channels = [];
+            querySnapShot.docs.forEach((doc) => console.log(doc))
+        });
+    }, []);
 
     return (
         <div className='sidebar'>

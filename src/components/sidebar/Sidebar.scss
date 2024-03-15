@@ -79,6 +79,9 @@
           width: 50px;
           border-radius: 50%;
         }
+        &:hover {
+          cursor: pointer;
+        }
         .accountName {
           margin-left: 5px;
 
