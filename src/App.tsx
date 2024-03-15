@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     auth.onAuthStateChanged((loginUser) => {
-      console.log(loginUser);
+      // console.log('Payload:', loginUser);
       if (loginUser) {
         dispatch(login({
           userId: loginUser.uid,
@@ -29,6 +29,7 @@ function App() {
       }
     });
   }, [dispatch]);
+
 
   return (
     <div className="App">
