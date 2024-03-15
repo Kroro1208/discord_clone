@@ -6,31 +6,15 @@ import SidebarChannel from './SidebarChannel';
 import SettingsVoiceIcon from '@mui/icons-material/SettingsVoice';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { auth, db } from '../../firebase';
+import { auth } from '../../firebase';
 import { useAppSelector } from '../../app/hooks';
-import { collection, query, onSnapshot, DocumentData } from 'firebase/firestore';
+import useCollection from '../../hooks/useCollection';
 
-interface Channel {
-    id: string,
-    channel: DocumentData;
-}
 
 function Sidebar() {
-    const [channels, setChannels] = useState<Channel[]>([]);
-
     const user = useAppSelector((state) => state.user);
-    // このonSnapshotを使用する際にエラーが出たのでErrorBoundaryでエラーを確認
-    const q = query(collection(db, "channels"));
-    useEffect(() => {
-        onSnapshot(q, (querySnapShot) => {
-            const channelsData: Channel[] = [];
-            querySnapShot.docs.forEach((doc) => channelsData.push({
-                id: doc.id,
-                channel: doc.data(),
-            }));
-            setChannels(channelsData);
-        });
-    }, []);
+    const {documents: channels } = useCollection("channels"); // "channels"はFirebaseのコレクション名
+
 
     return (
         <div className='sidebar'>
