@@ -9,6 +9,7 @@ import ChatMessage from './ChatMessage';
 import { useAppSelector } from '../../app/hooks';
 import { db } from '../../firebase';
 import { CollectionReference, DocumentData, DocumentReference, Timestamp, addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore';
+import useSubCollection from '../../hooks/useSubCollection';
 
 
 interface Messages {
@@ -24,37 +25,11 @@ interface Messages {
 
 function Chat() {
     const channelName = useAppSelector((state) => state.channel.channelName);
-    const channelId = useAppSelector((state) => state.channel.channelId);
     const user = useAppSelector((state) => state.user.user);
-
+    const channelId = useAppSelector((state) => state.channel.channelId);
     const [inputText, setInputText] = useState<string>("");
-    const [messages, setMessages] = useState<Messages[]>([]);
 
-
-    useEffect(() => {
-        let collectionRef = collection(
-            db,
-            "channels",
-            String(channelId),
-            "messages"
-        );
-
-        const collectionRefOrder = query(collectionRef, orderBy("Timestamp", "asc"));
-
-        onSnapshot(collectionRefOrder, (snapshot) => {
-            let messageData: Messages[] = [];
-
-            // 登録されたmessage情報の取得
-            snapshot.docs.forEach((doc) => {
-                messageData.push({
-                    timestamp: doc.data().Timestamp,
-                    message: doc.data().message,
-                    user: doc.data().user,
-                });
-            });
-            setMessages(messageData);
-        });
-    }, [channelId]);
+    const { subDocuments: messages } = useSubCollection("channels", "messages"); // Firebaseのコレクション名
 
     const sendMessage = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
