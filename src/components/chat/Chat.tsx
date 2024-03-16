@@ -8,7 +8,7 @@ import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfi
 import ChatMessage from './ChatMessage';
 import { useAppSelector } from '../../app/hooks';
 import { db } from '../../firebase';
-import { CollectionReference, DocumentData, DocumentReference, Timestamp, addDoc, collection, onSnapshot, serverTimestamp } from 'firebase/firestore';
+import { CollectionReference, DocumentData, DocumentReference, Timestamp, addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore';
 
 
 interface Messages {
@@ -32,14 +32,22 @@ function Chat() {
 
 
     useEffect(() => {
-        let collectionRef = collection(db, "channels", String(channelId), "messages");
-        onSnapshot(collectionRef, (snapshot) => {
+        let collectionRef = collection(
+            db,
+            "channels",
+            String(channelId),
+            "messages"
+        );
+
+        const collectionRefOrder = query(collectionRef, orderBy("Timestamp", "asc"));
+
+        onSnapshot(collectionRefOrder, (snapshot) => {
             let messageData: Messages[] = [];
 
             // 登録されたmessage情報の取得
             snapshot.docs.forEach((doc) => {
                 messageData.push({
-                    timestamp: doc.data().timestamp,
+                    timestamp: doc.data().Timestamp,
                     message: doc.data().message,
                     user: doc.data().user,
                 });
@@ -52,13 +60,13 @@ function Chat() {
         e.preventDefault();
         // firebaseのchannelコレクション内のmessagesコレクションにメッセージ情報を入れる
         const collectionRef: CollectionReference<DocumentData> = collection(db, "channels", String(channelId), "messages");
-        const docRef: DocumentReference<DocumentData> = await addDoc(collectionRef, {
-            timestamp: serverTimestamp(),
+        await addDoc(collectionRef, {
+            Timestamp: serverTimestamp(),
             message: inputText,
             user: user
         });
-        console.log(docRef);
 
+        setInputText("");
     }
 
     return (
@@ -81,7 +89,8 @@ function Chat() {
                 <AddCircleOutlineIcon />
                 <form>
                     {/* ここに入力されたテキストをfirebaseのmessagesコレクションに保存して表示させる */}
-                    <input type="text" placeholder='#筋トレへメッセージを送信'
+                    <input type="text" placeholder={`${channelName}へメッセージを送信`}
+                        value={inputText}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputText(e.target.value)}
                     />
                     <button type='submit' className='chatInputButton'

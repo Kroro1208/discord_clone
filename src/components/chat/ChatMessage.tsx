@@ -16,12 +16,11 @@ type Props = {
 
 function ChatMessage(props: Props) {
     const { message, timestamp, user } = props;
-    console.log(timestamp);
     // const displayDate = timestamp ? new Date(timestamp.toDate()).toLocaleString() : '日時未設定';
 
     return (
         <div className='message'>
-            <Avatar />
+            <Avatar src={user?.image} />
             <div className='messageInfo'>
                 <h4>{user.displayName}
                     <span className='messageTimeStamp'>{new Date(timestamp?.toDate()).toLocaleString()}</span>
